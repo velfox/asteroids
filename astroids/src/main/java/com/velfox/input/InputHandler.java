@@ -21,4 +21,5 @@ public class InputHandler {
     public boolean isKeyPressed(KeyCode key) {
         return keyStates.getOrDefault(key, false);
     }
+    
 }

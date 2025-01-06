@@ -9,14 +9,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import com.velfox.utilitys.Constants;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class GameInitializer {
 
-    private static final int WIDTH = 500;
-    private static final int HEIGHT = 500;
+    private static final int WIDTH = Constants.SCREEN_HEIGHT;
+    private static final int HEIGHT = Constants.SCREEN_WIDTH;
 
     private Stage stage;
 
@@ -25,6 +27,8 @@ public class GameInitializer {
     }
 
     public void initialize() {
+
+        //opbouwen
         Pane pane = new Pane();
         pane.setPrefSize(WIDTH, HEIGHT);
 
@@ -43,9 +47,11 @@ public class GameInitializer {
         List<Asteroid> asteroids = createInitialAsteroids(5);
         asteroids.forEach(asteroid -> pane.getChildren().add(asteroid.getCharacter()));
 
+        //start gameloop hier
         GameLoop gameLoop = new GameLoop(ship, asteroids, projectiles, inputHandler, pane, scoreText);
         gameLoop.start();
 
+        // switch naar opgeboude scene
         stage.setScene(scene);
         stage.show();
     }

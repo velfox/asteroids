@@ -4,6 +4,8 @@ import com.velfox.entities.Asteroid;
 import com.velfox.entities.Projectile;
 import com.velfox.entities.Ship;
 import com.velfox.input.InputHandler;
+import com.velfox.utilitys.Constants;
+
 import javafx.animation.AnimationTimer;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -15,8 +17,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class GameLoop extends AnimationTimer {
 
-    private static final int WIDTH = 300;
-    private static final int HEIGHT = 200;
+    private static final int WIDTH = Constants.SCREEN_WIDTH;
+    private static final int HEIGHT = Constants.SCREEN_HEIGHT;
 
     private final Ship ship;
     private final List<Asteroid> asteroids;
