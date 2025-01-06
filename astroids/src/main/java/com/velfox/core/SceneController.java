@@ -4,7 +4,6 @@ import com.velfox.UI.MenuUI;
 import com.velfox.UI.GameUI;
 import com.velfox.UI.HighScoreUI;
 import javafx.stage.Stage;
-import javafx.scene.Scene;
 
 public class SceneController {
 
@@ -22,15 +21,15 @@ public class SceneController {
     }
 
     public void showGameScene() {
-        GameUI game = new GameUI(this);
-        stage.setScene(game.getScene());
+        GameUI gameUI = new GameUI(this);
+        stage.setScene(gameUI.getScene());
         stage.setTitle("Asteroids - Game");
         stage.show();
     }
 
     public void showHighScoreScene() {
-        HighScoreUI highScore = new HighScoreUI(this);
-        stage.setScene(highScore.getScene());
+        HighScoreUI highScoreUI = new HighScoreUI(this);
+        stage.setScene(highScoreUI.getScene());
         stage.setTitle("Asteroids - High Scores");
         stage.show();
     }
