@@ -1,0 +1,37 @@
+package com.velfox.core;
+
+import com.velfox.UI.MenuUI;
+import com.velfox.UI.GameUI;
+import com.velfox.UI.HighScoreUI;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+
+public class SceneController {
+
+    private Stage stage;
+
+    public SceneController(Stage stage) {
+        this.stage = stage;
+    }
+
+    public void showMenuScene() {
+        MenuUI menu = new MenuUI(this);
+        stage.setScene(menu.getScene());
+        stage.setTitle("Asteroids - Main Menu");
+        stage.show();
+    }
+
+    public void showGameScene() {
+        GameUI game = new GameUI(this);
+        stage.setScene(game.getScene());
+        stage.setTitle("Asteroids - Game");
+        stage.show();
+    }
+
+    public void showHighScoreScene() {
+        HighScoreUI highScore = new HighScoreUI(this);
+        stage.setScene(highScore.getScene());
+        stage.setTitle("Asteroids - High Scores");
+        stage.show();
+    }
+}

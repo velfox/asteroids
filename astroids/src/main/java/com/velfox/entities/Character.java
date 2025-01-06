@@ -1,5 +1,6 @@
-package com.velfox;
+package com.velfox.entities;
 
+import com.velfox.utilitys.Constants;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
@@ -39,32 +40,33 @@ public abstract class Character {
         this.movement = movement;
     }
 
-    public void setAlive(boolean state){
+    public void setAlive(boolean state) {
         isAlive = state;
     }
 
-    public boolean isAlive(){
+    public boolean isAlive() {
         return isAlive;
     }
 
     public void move() {
         this.character.setTranslateX(this.character.getTranslateX() + this.movement.getX());
         this.character.setTranslateY(this.character.getTranslateY() + this.movement.getY());
-    
+
+        // Controleer schermbreedte en hoogte
         if (this.character.getTranslateX() < 0) {
-            this.character.setTranslateX(this.character.getTranslateX() + AsteroidsApplication.WIDTH);
+            this.character.setTranslateX(this.character.getTranslateX() + Constants.SCREEN_WIDTH);
         }
-    
-        if (this.character.getTranslateX() > AsteroidsApplication.WIDTH) {
-            this.character.setTranslateX(this.character.getTranslateX() % AsteroidsApplication.WIDTH);
+
+        if (this.character.getTranslateX() > Constants.SCREEN_WIDTH) {
+            this.character.setTranslateX(this.character.getTranslateX() % Constants.SCREEN_WIDTH);
         }
-    
+
         if (this.character.getTranslateY() < 0) {
-            this.character.setTranslateY(this.character.getTranslateY() + AsteroidsApplication.HEIGHT);
+            this.character.setTranslateY(this.character.getTranslateY() + Constants.SCREEN_HEIGHT);
         }
-    
-        if (this.character.getTranslateY() > AsteroidsApplication.HEIGHT) {
-            this.character.setTranslateY(this.character.getTranslateY() % AsteroidsApplication.HEIGHT);
+
+        if (this.character.getTranslateY() > Constants.SCREEN_HEIGHT) {
+            this.character.setTranslateY(this.character.getTranslateY() % Constants.SCREEN_HEIGHT);
         }
     }
 

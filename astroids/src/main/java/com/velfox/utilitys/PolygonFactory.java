@@ -1,4 +1,4 @@
-package com.velfox;
+package com.velfox.utilitys;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package com.velfox;
+package com.velfox.entities;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Polygon;
 

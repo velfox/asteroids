@@ -1,6 +1,8 @@
-package com.velfox;
+package com.velfox.entities;
 
 import java.util.Random;
+
+import com.velfox.utilitys.PolygonFactory;
 
 import javafx.scene.shape.Polygon;
 
