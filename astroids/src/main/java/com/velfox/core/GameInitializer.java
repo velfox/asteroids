@@ -27,7 +27,6 @@ public class GameInitializer {
     }
 
     public void initialize() {
-
         //opbouwen
         Pane pane = new Pane();
         pane.setPrefSize(WIDTH, HEIGHT);
@@ -54,6 +53,11 @@ public class GameInitializer {
         // switch naar opgeboude scene
         stage.setScene(scene);
         stage.show();
+
+        // Maak de SceneController en start met het menu
+        SceneController sceneController = new SceneController(stage);
+        sceneController.showMenuScene();
+      
     }
 
     private List<Asteroid> createInitialAsteroids(int count) {
