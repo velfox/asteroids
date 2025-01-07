@@ -7,8 +7,16 @@ import java.util.List;
 
 public class HighScoreManager {
 
-    private static final String HIGH_SCORE_FILE = "highscores.txt";
+    private static final String HIGH_SCORE_FILE = "data/highscores.txt";
     private static final int MAX_HIGH_SCORES = 5;
+
+    // Zorg ervoor dat de data-map bestaat
+    static {
+        File dataDir = new File("data");
+        if (!dataDir.exists()) {
+            dataDir.mkdir();
+        }
+    }
 
     public static List<HighScoreEntry> getHighScores() {
         List<HighScoreEntry> highScores = new ArrayList<>();
@@ -35,10 +43,12 @@ public class HighScoreManager {
                 writer.write(entry.getName() + ";" + entry.getScore());
                 writer.newLine();
             }
+            System.out.println("Highscores saved successfully.");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    
 
     public static boolean isTopScore(int score) {
         List<HighScoreEntry> highScores = getHighScores();

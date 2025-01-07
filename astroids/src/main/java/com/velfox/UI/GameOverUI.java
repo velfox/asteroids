@@ -28,6 +28,9 @@ public class GameOverUI {
         }
     }
 
+    /**
+     * Scene voor als de speler een top 5 highscore behaalt.
+     */
     private Scene getTopScoreScene() {
         VBox layout = new VBox(15);
         layout.setAlignment(Pos.CENTER);
@@ -51,17 +54,21 @@ public class GameOverUI {
         return new Scene(layout, 600, 400);
     }
 
+    /**
+     * Scene voor als de speler geen highscore behaalt.
+     */
     private Scene getNoHighScoreScene() {
         VBox layout = new VBox(15);
         layout.setAlignment(Pos.CENTER);
 
-        Text title = new Text("Game Over! No High Score This Time");
+        Text title = new Text("Game Over!");
+        Text message = new Text("Unfortunately, you didn't make it to the Top 5.");
         Text scoreText = new Text("Your Score: " + finalScore);
 
         Button backButton = new Button("Back to Menu");
         backButton.setOnAction(e -> sceneController.showMenuScene());
 
-        layout.getChildren().addAll(title, scoreText, backButton);
+        layout.getChildren().addAll(title, message, scoreText, backButton);
         return new Scene(layout, 600, 400);
     }
 }
