@@ -100,6 +100,7 @@ public class GameLoop extends AnimationTimer {
             asteroids.forEach(asteroid -> {
                 if (projectile.collide(asteroid)) {
                     projectile.setAlive(false);
+                    createImplosionEffect(asteroid); // Start implosie-effect
                     asteroid.setAlive(false);
                     scoreText.setText("Points: " + score.addAndGet(1000));
                 }
@@ -116,6 +117,23 @@ public class GameLoop extends AnimationTimer {
             }
         });
     }
+
+    private void createImplosionEffect(Asteroid asteroid) {
+        javafx.animation.ScaleTransition scaleTransition = new javafx.animation.ScaleTransition();
+        scaleTransition.setNode(asteroid.getCharacter());
+        scaleTransition.setFromX(1.0);
+        scaleTransition.setFromY(1.0);
+        scaleTransition.setToX(0.0); // Implodeer naar niets
+        scaleTransition.setToY(0.0);
+        scaleTransition.setDuration(javafx.util.Duration.millis(300)); // Duur van de implosie
+    
+        scaleTransition.setOnFinished(e -> {
+            pane.getChildren().remove(asteroid.getCharacter()); // Verwijder de asteroid uit het paneel
+        });
+    
+        scaleTransition.play();
+    }
+    
 
     private void spawnAsteroids() {
         if (Math.random() < 0.005) {

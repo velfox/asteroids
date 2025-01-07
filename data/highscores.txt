@@ -1,5 +1,5 @@
+dope;6000
+jup;4000
 jippie;2000
+tim;2000
 test;1000
-weasfdsf;0
-sadas;0
-jippoe;0
