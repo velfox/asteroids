@@ -1,5 +1,6 @@
 package com.velfox.entities;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
 public class Projectile extends Character {
@@ -9,6 +10,8 @@ public class Projectile extends Character {
     public Projectile(int x, int y) {
         super(new Polygon(2, -2, 2, 2, -2, 2, -2, -2), x, y);
         this.lifetime = 100; // Example lifetime in ticks (adjust as needed)
+        this.getCharacter().setFill(Color.YELLOW); // Zet de kleur van het projectiel op geel
+
     }
 
     @Override

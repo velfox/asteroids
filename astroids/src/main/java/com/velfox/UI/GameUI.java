@@ -10,6 +10,7 @@ import com.velfox.core.GameLoop;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class GameUI {
         // Maak een nieuw Pane voor elke nieuwe Scene
         Pane gameLayout = new Pane();
         gameLayout.setPrefSize(600, 400);
+        gameLayout.setStyle("-fx-background-color: black;");
 
         // Voeg UI-elementen toe
         Text scoreText = new Text(10, 20, "Points: 0");
@@ -56,6 +58,9 @@ public class GameUI {
         // Start de GameLoop
         startGameLoop(gameLayout, scoreText);
 
+        scene.setFill(Color.BLACK);
+        scoreText.setFill(Color.WHITE); // Zorg dat de tekst zichtbaar blijft
+    
         return scene;
     }
 
