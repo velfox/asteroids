@@ -1,3 +1,5 @@
+jippie;2000
 test;1000
 weasfdsf;0
 sadas;0
+jippoe;0

@@ -64,11 +64,17 @@ public class GameLoop extends AnimationTimer {
     private void fireProjectile() {
         if (projectiles.size() < 20) {
             Projectile projectile = new Projectile(
-                (int) ship.getCharacter().getTranslateX(), 
+                (int) ship.getCharacter().getTranslateX(),
                 (int) ship.getCharacter().getTranslateY()
             );
             projectile.getCharacter().setRotate(ship.getCharacter().getRotate());
-            projectile.accelerate();
+    
+            // Zet de snelheid 20 keer sneller
+            double speedMultiplier = 20.0;
+            double changeX = Math.cos(Math.toRadians(ship.getCharacter().getRotate())) * speedMultiplier;
+            double changeY = Math.sin(Math.toRadians(ship.getCharacter().getRotate())) * speedMultiplier;
+    
+            projectile.setMovement(projectile.getMovement().add(changeX, changeY));
             projectiles.add(projectile);
             pane.getChildren().add(projectile.getCharacter());
         }
@@ -78,6 +84,15 @@ public class GameLoop extends AnimationTimer {
         ship.move();
         asteroids.forEach(Asteroid::move);
         projectiles.forEach(Projectile::move);
+
+            // Verwijder projectielen die niet meer "alive" zijn
+        projectiles.removeIf(projectile -> {
+            if (!projectile.isAlive()) {
+                pane.getChildren().remove(projectile.getCharacter());
+                return true;
+            }
+            return false;
+        });
     }
 
     private void checkCollisions() {
