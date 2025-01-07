@@ -9,6 +9,6 @@ public class Ship extends Character {
         super(new Polygon(-5, -5, 10, 0, -5, 5), x, y);
 
         // Stel de vulkleur van het schip in op blauw
-        this.getCharacter().setFill(Color.BLUE);
+        this.getCharacter().setFill(Color.WHITE);
     }
 }

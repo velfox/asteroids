@@ -62,7 +62,7 @@ public class GameLoop extends AnimationTimer {
     }
 
     private void fireProjectile() {
-        if (projectiles.size() < 20) {
+        if (projectiles.size() < 3) {
             Projectile projectile = new Projectile(
                 (int) ship.getCharacter().getTranslateX(),
                 (int) ship.getCharacter().getTranslateY()
@@ -104,7 +104,7 @@ public class GameLoop extends AnimationTimer {
 
                      // Verwijder het projectile uit het paneel
                     pane.getChildren().remove(projectile.getCharacter());
-                    
+
                     asteroid.setAlive(false);
                     scoreText.setText("Points: " + score.addAndGet(1000));
                 }
