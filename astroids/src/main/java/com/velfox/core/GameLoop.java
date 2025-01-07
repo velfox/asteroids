@@ -26,15 +26,18 @@ public class GameLoop extends AnimationTimer {
     private final InputHandler inputHandler;
     private final Pane pane;
     private final Text scoreText;
+    private final SceneController sceneController;
     private final AtomicInteger score = new AtomicInteger();
 
-    public GameLoop(Ship ship, List<Asteroid> asteroids, List<Projectile> projectiles, InputHandler inputHandler, Pane pane, Text scoreText) {
+    public GameLoop(Ship ship, List<Asteroid> asteroids, List<Projectile> projectiles, 
+                    InputHandler inputHandler, Pane pane, Text scoreText, SceneController sceneController) {
         this.ship = ship;
         this.asteroids = asteroids;
         this.projectiles = projectiles;
         this.inputHandler = inputHandler;
         this.pane = pane;
         this.scoreText = scoreText;
+        this.sceneController = sceneController;
     }
 
     @Override
@@ -50,11 +53,20 @@ public class GameLoop extends AnimationTimer {
         if (inputHandler.isKeyPressed(KeyCode.RIGHT)) ship.turnRight();
         if (inputHandler.isKeyPressed(KeyCode.UP)) ship.accelerate();
         if (inputHandler.isKeyPressed(KeyCode.SPACE)) fireProjectile();
+
+        // Pauzeren van de game en terugkeren naar het menu via ESC
+        if (inputHandler.isKeyPressed(KeyCode.ESCAPE)) {
+            stop(); // Stop de gameloop
+            sceneController.showMenuScene(); // Ga naar het menu
+        }
     }
 
     private void fireProjectile() {
         if (projectiles.size() < 20) {
-            Projectile projectile = new Projectile((int) ship.getCharacter().getTranslateX(), (int) ship.getCharacter().getTranslateY());
+            Projectile projectile = new Projectile(
+                (int) ship.getCharacter().getTranslateX(), 
+                (int) ship.getCharacter().getTranslateY()
+            );
             projectile.getCharacter().setRotate(ship.getCharacter().getRotate());
             projectile.accelerate();
             projectiles.add(projectile);
@@ -84,8 +96,8 @@ public class GameLoop extends AnimationTimer {
 
         asteroids.forEach(asteroid -> {
             if (ship.collide(asteroid)) {
-                stop();
-                System.out.println("Game Over! Final Score: " + score.get());
+                stop(); // Stop de gameloop
+                sceneController.showGameOverScene(score.get()); // Toon Game Over-scherm
             }
         });
     }

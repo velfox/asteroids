@@ -1,44 +1,68 @@
 package com.velfox.UI;
 
 import com.velfox.core.SceneController;
+import com.velfox.entities.Asteroid;
+import com.velfox.entities.Projectile;
+import com.velfox.entities.Ship;
+import com.velfox.input.InputHandler;
+import com.velfox.core.GameLoop;
+
 
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameUI {
 
-    private SceneController sceneController;
-    private Pane gameLayout;
+    private final SceneController sceneController;
+    private final InputHandler inputHandler;
+    private final Ship ship;
+    private final List<Asteroid> asteroids;
+    private final List<Projectile> projectiles;
 
     public GameUI(SceneController sceneController) {
         this.sceneController = sceneController;
-        this.gameLayout = new Pane();
-        setupGame();
+        this.inputHandler = new InputHandler();
+        this.ship = new Ship(300, 300); // Voorbeeld beginpositie
+        this.asteroids = new ArrayList<>();
+        this.projectiles = new ArrayList<>();
     }
 
     public Scene getScene() {
-        return new Scene(gameLayout, 600, 400);
+        // Maak een nieuw Pane voor elke nieuwe Scene
+        Pane gameLayout = new Pane();
+        gameLayout.setPrefSize(600, 400);
+
+        // Voeg UI-elementen toe
+        Text scoreText = new Text(10, 20, "Points: 0");
+        gameLayout.getChildren().add(scoreText);
+        gameLayout.getChildren().add(ship.getCharacter());
+
+        // Voeg asteroïden toe
+        for (int i = 0; i < 5; i++) {
+            Asteroid asteroid = new Asteroid((int) (Math.random() * 600), (int) (Math.random() * 400));
+            asteroids.add(asteroid);
+            gameLayout.getChildren().add(asteroid.getCharacter());
+        }
+
+        // Stel inputhandler in
+        Scene scene = new Scene(gameLayout);
+        scene.setOnKeyPressed(inputHandler::onKeyPressed);
+        scene.setOnKeyReleased(inputHandler::onKeyReleased);
+
+        // Start de GameLoop
+        startGameLoop(gameLayout, scoreText);
+
+        return scene;
     }
 
-    private void setupGame() {
-        Text placeholder = new Text(250, 200, "Game Scene (Implement Gameplay Here)");
-        gameLayout.getChildren().add(placeholder);
-
-        // Add back button for debugging
-        // Remove in production if you don't want users to go back during gameplay
-        Text backToMenu = new Text(10, 380, "Press ESC to return to Menu");
-        gameLayout.getChildren().add(backToMenu);
-
-        gameLayout.setOnKeyPressed(event -> {
-            switch (event.getCode()) {
-                case ESCAPE:
-                    sceneController.showMenuScene();
-                    break;
-                default:
-                    break;
-            }
-        });
-        gameLayout.requestFocus();
+    private void startGameLoop(Pane gameLayout, Text scoreText) {
+        GameLoop gameLoop = new GameLoop(
+            ship, asteroids, projectiles, inputHandler, gameLayout, scoreText, sceneController
+        );
+        gameLoop.start();
     }
 }
