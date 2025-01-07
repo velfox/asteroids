@@ -1,6 +1,5 @@
 tim;19000
+oke;14000
 oke;13000
+sad;13000
 oke;11000
-jup;8000
-oke;7000
-sfdsafdsf;0

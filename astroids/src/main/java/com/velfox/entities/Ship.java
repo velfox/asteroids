@@ -1,5 +1,4 @@
 package com.velfox.entities;
-import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 

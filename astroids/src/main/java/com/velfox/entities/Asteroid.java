@@ -5,7 +5,6 @@ import java.util.Random;
 import com.velfox.utilitys.PolygonFactory;
 
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Polygon;
 
 public class Asteroid extends Character {
 

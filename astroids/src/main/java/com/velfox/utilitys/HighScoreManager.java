@@ -4,7 +4,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import com.velfox.utilitys.Constants;;
 
 public class HighScoreManager {
 
@@ -21,7 +20,7 @@ public class HighScoreManager {
 
     public static List<HighScoreEntry> getHighScores() {
         List<HighScoreEntry> highScores = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(HIGH_SCORE_FILE))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(Constants.HIGH_SCORE_FILE))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(";");

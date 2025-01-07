@@ -19,6 +19,7 @@ public class GameLoop extends AnimationTimer {
 
     private static final int WIDTH = Constants.SCREEN_WIDTH;
     private static final int HEIGHT = Constants.SCREEN_HEIGHT;
+    //zelfde waarden herhaling > import constants.
 
     private final Ship ship;
     private final List<Asteroid> asteroids;
