@@ -4,10 +4,11 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import com.velfox.utilitys.Constants;;
 
 public class HighScoreManager {
 
-    private static final String HIGH_SCORE_FILE = "data/highscores.txt";
+    private static final String HIGH_SCORE_FILE = Constants.HIGH_SCORE_FILE;
     private static final int MAX_HIGH_SCORES = 5;
 
     // Zorg ervoor dat de data-map bestaat

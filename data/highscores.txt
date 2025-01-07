@@ -3,3 +3,4 @@ oke;13000
 oke;11000
 jup;8000
 oke;7000
+sfdsafdsf;0
