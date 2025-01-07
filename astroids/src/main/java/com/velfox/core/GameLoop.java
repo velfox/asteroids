@@ -101,6 +101,10 @@ public class GameLoop extends AnimationTimer {
                 if (projectile.collide(asteroid)) {
                     projectile.setAlive(false);
                     createImplosionEffect(asteroid); // Start implosie-effect
+
+                     // Verwijder het projectile uit het paneel
+                    pane.getChildren().remove(projectile.getCharacter());
+                    
                     asteroid.setAlive(false);
                     scoreText.setText("Points: " + score.addAndGet(1000));
                 }
